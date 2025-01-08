@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>烟花心形效果</title>
+    <style>
+        body {
+            margin: 0;
+            background: white url('10.png') no-repeat center center;
+            background-size: cover;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        canvas {
+            position: absolute;
+        }
+        #ignite {
+            position: relative;
+            z-index: 10;
+            padding: 10px 20px;
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: auto;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="fireworks"></canvas>
+    <button id="ignite">请你触碰一下我的心</button>
+
+    <script>
+        const canvas = document.getElementById('fireworks');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const heartPoints = [];
+        const staticHearts = [];
+
+        // 生成心形路径
+        function generateHeart() {
+            const scale = 15; // 增大轨迹范围
+            for (let t = 0; t < Math.PI * 2; t += 0.05) {
+                const x = 16 * Math.pow(Math.sin(t), 3);
+                const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
+                heartPoints.push({
+                    x: canvas.width / 2 + x * scale,
+                    y: canvas.height / 2 - y * scale
+                });
+            }
+        }
+
+        // 创建粒子
+        function createParticles(target) {
+            for (let i = 0; i < 100; i++) {
+                particles.push({
+                    x: target.x,
+                    y: target.y,
+                    angle: Math.random() * Math.PI * 2,
+                    speed: Math.random() * 4 + 1,
+                    radius: Math.random() * 2 + 1,
+                    color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+                    life: 50
+                });
+            }
+            staticHearts.push({ x: target.x, y: target.y, size: 20, opacity: 1, permanent: true });
+        }
+
+        // 渲染粒子
+        function renderParticles() {
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.x += Math.cos(p.angle) * p.speed;
+                p.y += Math.sin(p.angle) * p.speed;
+                p.life--;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+
+                if (p.life <= 0) particles.splice(i, 1);
+            }
+        }
+
+        // 渲染静态心形
+        function renderStaticHearts() {
+            for (let i = staticHearts.length - 1; i >= 0; i--) {
+                const heart = staticHearts[i];
+                ctx.beginPath();
+                ctx.moveTo(heart.x, heart.y);
+                ctx.arc(heart.x - heart.size / 2, heart.y - heart.size / 2, heart.size, 0, Math.PI * 2);
+                ctx.arc(heart.x + heart.size / 2, heart.y - heart.size / 2, heart.size, 0, Math.PI * 2);
+                ctx.lineTo(heart.x, heart.y + heart.size);
+                ctx.closePath();
+                ctx.fillStyle = `rgba(255, 105, 180, ${heart.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        // 动画循环
+        let index = 0;
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (index < heartPoints.length) {
+                createParticles(heartPoints[index]);
+                index++;
+            }
+            renderParticles();
+            renderStaticHearts();
+            requestAnimationFrame(animate);
+        }
+
+        document.getElementById('ignite').addEventListener('click', () => {
+            generateHeart();
+            animate();
+        });
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
