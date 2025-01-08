@@ -59,6 +59,7 @@
         const particles = [];
         const heartPoints = [];
         const staticHearts = [];
+        const music = document.getElementById('background-music');
 
         // 生成心形路径
         function generateHeart() {
@@ -137,14 +138,13 @@
         document.getElementById('ignite').addEventListener('click', () => {
             generateHeart();
             animate();
-        });
 
-        // 播放背景音乐
-        window.addEventListener('load', () => {
-            const music = document.getElementById('background-music');
-            music.play().catch(() => {
-                console.log('需要用户交互才能播放音乐');
-            });
+            // 播放背景音乐
+            if (music.paused) {
+                music.play().catch((err) => {
+                    console.log('音乐播放失败:', err);
+                });
+            }
         });
 
         window.addEventListener('resize', () => {
