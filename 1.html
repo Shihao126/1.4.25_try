@@ -3,51 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我们的恋爱纪念日</title>
+    <title>Emergency Contact Information</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            background: linear-gradient(to bottom, #4b0082, #8a2be2);
             text-align: center;
-            color: #333;
+            color: #fff;
         }
         .container {
             padding: 20px;
             max-width: 600px;
             margin: 50px auto;
             background: #fff;
+            color: #333;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
         h1 {
-            color: #ff6f61;
+            color: #4b0082;
             font-size: 2.5em;
         }
         p {
             font-size: 1.2em;
             line-height: 1.6;
         }
-        .highlight {
-            font-weight: bold;
-            color: #ff6f61;
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
         }
-        footer {
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #666;
+        .hidden {
+            display: none;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 1.2em;
+        }
+        input[type="text"], input[type="email"] {
+            font-size: 1em;
+            padding: 5px;
+            margin: 10px 0;
+            width: 80%;
+        }
+        button {
+            font-size: 1em;
+            color: #fff;
+            background-color: #4b0082;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #6a0dad;
+        }
+        audio {
+            display: none;
+        }
+        /* 第二页优化样式 */
+        body.anniversary {
+            background: linear-gradient(to bottom, #6a0dad, #d8bfd8);
+            color: #fff;
+        }
+        .container.anniversary {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            animation: slideIn 1s ease-in-out;
+        }
+        h1.anniversary {
+            font-size: 2.8em;
+            text-align: center;
+            color: #6a0dad;
+            background: linear-gradient(90deg, #ff69b4, #ff4500);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 1.5s infinite alternate;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #ff69b4, 0 0 10px #ff4500;
+            }
+            to {
+                text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff4500;
+            }
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        img.anniversary {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        img.anniversary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+        #anniversary-page {
+        text-align: left;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>我们的恋爱纪念日</h1>
-        <p>亲爱的，<span class="highlight">Happy Anniversary!</span></p>
-        <p>我们已经走过了一年的时间，虽然是异国恋，但我们的感情却始终如一。无论距离多远，我都感受到你的关心和爱。</p>
-        <p>感谢你出现在我的生命里，让我每天都充满期待。未来的日子，我们一起继续努力，创造更多美好的回忆！</p>
-        <p class="highlight">我爱你！❤️</p>
-        <footer>From: Valentin</footer>
+    <!-- First Page -->
+    <div class="container" id="contact-form-page">
+        <img src="image.png" alt="NYU Logo">
+        <h1>Emergency Contact Information</h1>
+        <p>Please fill in the following details for the NYU Emergency Contact Database:</p>
+        <form id="contact-form">
+            <label for="name">Full Name:</label><br>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required><br>
+
+            <label for="email">Email Address:</label><br>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required><br>
+
+            <label for="phone">Phone Number:</label><br>
+            <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required><br>
+
+            <label for="relation">Relationship to Student:</label><br>
+            <input type="text" id="relation" name="relation" placeholder="e.g., Friend, Partner, etc." required><br>
+
+            <button type="submit">Submit</button>
+        </form>
     </div>
+
+    <!-- Second Page -->
+    <div class="container hidden anniversary" id="anniversary-page">
+        <h1 class="anniversary">❤️Our 1-Year Anniversary❤️</h1>
+
+        <p>睿睿，我们不知不觉已经一年啦。这是我们的开始，这张照片是那天过生日，那段日子的每天晚上，我都努力想记住你的样子可总是记不起来，那时我就知道我爱上你了，后来翻看照片的时候，这张是我最喜欢的一张，因为你眼里也有爱，我能感受到你也爱上我啦。</p>
+        <img src="1.jpg" alt="Photo 1" class="anniversary">
+
+        <p>现在让我慢慢跟你聊会天吧宝宝，在波特兰的日子无疑是孤独而绝望的，当然，那是我自己选择的路，我知道我的身后空无一人，一切只能靠自己走下去。我自认幸运身边有父母的支持和兄弟朋友们的关心，可内心深处我知道，唯有爱情，另一半才能真正让我的人生变得更完整。那么我未来的爱人会是什么样子的呢？我好期待啊，宿舍blumel楼下有一张我十分心仪的长椅，我畅想过有一个人可以让我靠在肩膀上，我们一起抬头望着天上的星星，晚风吹拂，纵使无言相望也心灵相通。可现实，每次都是我孑然双手搭在长椅靠背，吊儿郎当的看着天空发呆：我啊，许不了谁一个未来，别祸祸人家小姑娘了，好好干，肯定会越来越好的！</p>
+        <p>我是一个拉康派精神分析的狂热粉丝，我记得理论中提到爱的本质是源于主体的某种缺失；爱是爱的自己对客体的想象；爱是需求的呼唤，爱也是一面帮助主体确认自身存在的镜子… 但当我和你在一起的时候 我发现痴迷于理论是懦弱的！去他妈的理论，我应该像个男人一样。去做！  </p>
+        <p>陈铭在辩论赛中说过：一个洞穴是黑暗的，但只要有光打了进去，黑暗就不再是他的宿命；大洋是隔绝的，沙漠是危险的，但只要有人穿了过去，阻绝就不再是我们的宿命。 一个人一生都可能是孤独的，但你只要感受过一次被爱，你会忘不掉，孤独不再是你的宿命。</p>
+        <p>而我的宿命就是和你一起走到最后，我想我孤独的人生到站了，接下来的旅途，我想一直和你在一起睿睿。</p>
+        <p>这是我们在一起的第一个冬天哦，我是突然不适应那么冷的天啊，不得不把秋衣秋裤必须安排的明明白白，可我讨厌臃肿的感觉，也讨厌彼此拥抱时一层层的衣服把你我相隔了足足五厘米，我想让你感受到我的心跳，向你证明我有多么紧张而激动，也想知道是否你也和我一样。 记得冬天我们一起做过什么吗，不知道此时此刻的你表情是不是傻傻的笑着，哈哈哈，下面还有很多要跟你讲(●’◡’●)</p>
+        <img src="2.jpg" alt="Photo 2" class="anniversary">
+
+        <p>这个必须得拿出来单讲，你看你扣的，这是睿睿第一次生气，又扣又可爱，我好喜欢你呀。噢，让我想起来你前几天生气的时候还一直唉唉的叹气，你真的是一个特别特别可爱的宝宝，那时候在我脑海里的念头就是一定要跟你结婚，我想永远保护着拥有着你，世界上最可爱的女朋友！</p>
+        <img src="3.jpg" alt="Photo 3" class="anniversary">
+
+        <p>我们终于有了一只可爱的小猫啦，小柠啊小柠，抱歉爸爸最近不能陪伴你，爸爸要努力上学，以后给你和妈妈赚罐罐钱，你一定要茁壮成长，不许惹妈妈生气哦。我很快就回来啦。宝宝，就像你说过，养猫的过程可以看出我们会如何对待未来的孩子呢，我不得不承认，你将会是一个很有耐心的好妈妈，为我你骄傲。希望我不在的日子，小柠可以代替我好好的陪伴着你，无数个孤独的夜不得不要你自己熬过去啦，我能理解那会很痛苦，但我也会随时在手机，在大洋的另一侧尽力陪伴着你的宝宝，做你的“手机宠物”哈哈哈。</p>
+        <img src="4.jpg" alt="Photo 4" class="anniversary">
+
+        <p>这是我们第一次去旅游，还好大体上看咱顺顺利利的，好怀念我们马上出发前的感受啊，期待，无忧无虑….想想我们的下一站，Tokyo？Hokkaido？其实新西兰也不错，下次也带着秦子瑜吗，当哥哥姐姐就是要照顾小的~</p>
+        <img src="5.jpg" alt="Photo 5" class="anniversary">
+
+        <p>第二次旅游宝宝！我们一起在山里穿梭，其实很多瞬间我有些恍惚，活在美好生活的倒计时里，眼前的一切，我即将要失去了吗？眼前的你我还能陪伴多久呢，我好不舍得，马上就要走了，我从未想过我会有那么不情愿前往自己的梦校。上天，可不可以多给我一个星期，我还没有准备好，我还没有带睿睿去… 该走啦。</p>
+        <img src="6.jpg" alt="Photo 6" class="anniversary">
+
+        <p>2025.1.8日的宝宝和臭臭柠，我们还在一起，宝宝依然是那么漂亮，柠檬也越来越好看啦，至少现在看来，一切都在如我们的计划正常进行着，日子越来越有盼头，我珍惜着和宝宝在一起的每一天，听你分享着每天身边的各种事情，试着安慰宝宝的情绪，平衡着我们彼此的生活。花有一万种开法，祝我们方寸不乱。</p>
+        <img src="7.jpg" alt="Photo 7" class="anniversary">
+
+        <img src="8.jpg" alt="Photo 8" class="anniversary">
+        <p>便纵有千种风情，更与何人说。曼哈顿的繁华并没能打动我，睿睿，我想有个家，一个不需要多大的地方，在我疲倦的时候我会想到它。我累了吗，我要为了咱的未来好好打拼，希望我能有所成就吧，给你更好的生活。前路漫漫，世事沧桑。如果你在就好了，我们一起吹着晚风，坐在平台的秋千上相拥。现在有些冷，我也该回去了，回去跟睿睿视频！</p>
+        <p>你是我最好的生日礼物，我很幸运，在人生年轻的时候遇到了那么完美的另一半，或许也不幸运，在最没有能力的时候遇到想走到最后的人。睿睿，我不知道接下来的日子我们会不会继续走下去呢，很悲观绝情的想法，但我想说的是，谢谢你陪伴我的这段时间，你让我体会到爱情的美好，感谢你倾听着我，尊重着我的想法，我会珍惜着我们在一起的每一天，醒来你在我便足矣。</p>
+        <p>好啦，其实还有好多话想跟你慢慢聊，突然想不起来了哈哈哈哈。时候不早了我该调试一下网页效果了，嘿嘿，我爱你睿睿。祝我生日快乐。祝我们有个幸福的未来。</p>
+        <p>李世豪 2025.1.9</p>
+
+        <audio id="track1">
+            <source src="莫文蔚 - 钻石.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="track2">
+            <source src="张悬 - 儿歌.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        const contactForm = document.getElementById('contact-form');
+        const contactFormPage = document.getElementById('contact-form-page');
+        const anniversaryPage = document.getElementById('anniversary-page');
+        const track1 = document.getElementById('track1');
+        const track2 = document.getElementById('track2');
+
+        function playTracksSequentially() {
+            track1.play();
+            track1.onended = () => {
+                track2.play();
+                track2.onended = () => {
+                    playTracksSequentially(); // Loop back to the first track
+                };
+            };
+        }
+
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            contactFormPage.classList.add('hidden');
+            document.body.classList.add('anniversary'); // 更改背景
+            anniversaryPage.classList.remove('hidden');
+
+            // Start playing music
+            playTracksSequentially();
+        });
+
+        // 动画延迟
+        window.addEventListener("load", () => {
+            const paragraphs = document.querySelectorAll("p");
+            paragraphs.forEach((p, index) => {
+                p.style.animationDelay = `${index * 0.5}s`; // 每段文字延迟
+            });
+        });
+    </script>
 </body>
 </html>
