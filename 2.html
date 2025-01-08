@@ -37,6 +37,7 @@
 <body>
     <canvas id="fireworks"></canvas>
     <button id="ignite">请你触碰一下我的心</button>
+    <audio id="background-music" src="张悬 - 儿歌.mp3" preload="auto"></audio>
 
     <script>
         const canvas = document.getElementById('fireworks');
@@ -125,6 +126,14 @@
         document.getElementById('ignite').addEventListener('click', () => {
             generateHeart();
             animate();
+        });
+
+        // 播放背景音乐
+        window.addEventListener('load', () => {
+            const music = document.getElementById('background-music');
+            music.play().catch(() => {
+                console.log('需要用户交互才能播放音乐');
+            });
         });
 
         window.addEventListener('resize', () => {
